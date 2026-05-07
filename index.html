@@ -672,8 +672,8 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#home" onclick="closeMobile()">Home</a>
-  <a href="#services" onclick="closeMobile()" style="font-weight:700;">Services</a>
-  <div class="mobile-sub">
+  <a href="#services" onclick="toggleMobileServices(event)" style="font-weight:700;">Services ▼</a>
+  <div class="mobile-sub" id="mobileServicesSub" style="display:none;">
     <a href="#ignition" onclick="closeMobile()">⚙️ Ignition Repair & Replacement</a>
     <a href="#keyfob" onclick="closeMobile()">📡 Key Fob & Remote</a>
     <a href="#smartkey" onclick="closeMobile()">🚗 Smart Key & Push-to-Start</a>
@@ -1643,6 +1643,17 @@
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
   function closeMobile() { mobileMenu.classList.remove('open'); }
+  function toggleMobileServices(event) {
+    event.preventDefault();
+    const sub = document.getElementById('mobileServicesSub');
+    if (sub.style.display === 'none') {
+      sub.style.display = 'block';
+      event.target.textContent = 'Services ▲';
+    } else {
+      sub.style.display = 'none';
+      event.target.textContent = 'Services ▼';
+    }
+  }
 
   function toggleFaq(btn) {
     const item = btn.parentElement;
